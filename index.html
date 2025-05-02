@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <!-- jquery cdn link -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <style>
+        body{
+            background-color: orange;;
+        }
+        main{
+            border:2px solid green;
+            border-radius: 10px;;
+            text-align: center;
+            background-color: yellow;
+            margin-top: 50px;;
+        }
+        h1{
+            color: blue;
+            font-size: 50px;
+        }
+        div{
+            font-size: 100px;
+            color:green;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Digital Clock</h1>
+        <div class="clock"></div>
+    </main>
+
+    <script>
+        $(document).ready(function(){
+            let date = new Date();
+            let hour = date.getHours();
+            let min = date.getMinutes();
+            let sec = date.getSeconds();
+            let ampm = hour>=12? "PM":"AM";
+
+            setInterval(function(){
+                sec+=1;
+                if(sec>59){
+                    sec=0;
+                    min+=1;
+                }
+                if(min>59){
+                    min=0;
+                    hour+=1;
+                }
+
+                $(".clock").text(hour + ":" + min + ":" + sec + " "+ampm)
+
+            },1000) //every 1 second setInterval function runs and set the values
+            //after getting it
+
+        })
+    </script>
+</body>
+</html>
